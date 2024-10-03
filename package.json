@@ -1,0 +1,19 @@
+{
+  "name": "mvc_little_project",
+  "version": "0.0.1",
+  "description": "A simple project which aim to improve the understanding of its author about MVC ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "mvc_little_project"
+  },
+  "keywords": [
+    "MVC",
+    "JS"
+  ],
+  "author": "SNNikolov99",
+  "license": "ISC"
+}
