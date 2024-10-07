@@ -1,0 +1,14 @@
+[
+    {
+        "id": 10001,
+        "dateOfManufacture": "12-10-2023",
+        "workcluster": "CECC"
+        
+    },
+    {
+        "id": 10002,
+        "dateOfManufacture": "16-08-2024",
+        "workcluster": "CEFF"
+        
+    }
+]

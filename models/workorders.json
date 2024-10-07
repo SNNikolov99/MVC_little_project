@@ -1,0 +1,14 @@
+[
+    {
+        "id": 20001,
+        "customer": "BMW",
+        "neededProducts": [["CECC" ,"1200"],["CEBB" ,"200"]],
+        "deliveryDate":"12-10-2024"
+    },
+    {
+        "id": 20002,
+        "customer": "Resistor 8 ohms",
+        "neededProducts": [["CECC" ,"200"],["CEBB" ,"400"]],
+        "deliveryDate":"13-10-2024"
+    }
+]

@@ -13,21 +13,20 @@ const createNewWorkorder = (req,res) =>{
 
     
     data.set([...data.workorders,NewWorkorder]);
-    res,json(data.workorders)
+    res.json(data.workorders)
 }
 
 const updateWorkorder = (req,res) => {
-    const workorder = data.workorders.find(workorder => workorder.id === parseInt(req.params.id));
+    const workorder = data.workorders.find(workorder => workorder.id === parseInt(req.body.id));
     if(!workorder){
-         return res.status(400).json({"message": `Part id ${req.params.id} not found`})
+         return res.status(400).json({"message": `Part id ${req.body.id} not found`})
     }
-    if(req.body.customer) req.body.customer;
-    if(req.body.deliveryDate) req.body. deliveryDate;
-    if(req.body.neededProducts) req.body.neededProducts;
+    if(req.body.customer) workorder.customer = req.body.customer;
+    if(req.body.deliveryDate) workorder.deliveryDate = req.body. deliveryDate;
+    if(req.body.neededProducts) workorder.neededProducts = req.body.neededProducts;
     const filteredArray = data.workorders.filter(workorder =>workorder.id !== parseInt(req.body.id));
     const unsortedArray = [...filteredArray,workorder];
-    data.setWorkorders(unsortedArray.sort((a,b) =>{a.id > b.id ? 1 :a.id < b.id ? 1 : 0 }))
-    data.setWorkorders([...filteredArray])
+    data.setWorkorders(unsortedArray.sort((a, b) => a.id > b.id ? 1 : a.id < b.id ? -1 : 0))
     res.json(data.workorders);
 }
 

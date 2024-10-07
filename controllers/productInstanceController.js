@@ -12,20 +12,19 @@ const createNewProductInstance = (req,res) =>{
 
    
     data.setProductInstances([...data.productInstances,NewProductInstance]);
-    res,json(data.productInstances)
+    res.json(data.productInstances)
 }
 
 const updateProductInstance = (req,res) => {
-    const productInstance = data.productInstances.find(productInstance => productInstance.id === parseInt(req.params.id));
+    const productInstance = data.productInstances.find(productInstance => productInstance.id === parseInt(req.body.id));
     if(!productInstance){
-         return res.status(400).json({"message": `Part id ${req.params.id} not found`})
+         return res.status(400).json({"message": `Part id ${req.body.id} not found`})
     }
-    if(req.body.dateOfManufacture) req.body.dateOfManufacture;
-    if(req.body.workcluster) req.body.workcluster;
+    if(req.body.dateOfManufacture) productInstance.dateOfManufacture = req.body.dateOfManufacture;
+    if(req.body.workcluster) productInstance.workcluster = req.body.workcluster;
     const filteredArray = data.productInstances.filter(productInstance =>productInstance.id !== parseInt(req.body.id));
     const unsortedArray = [...filteredArray,productInstance];
-    data.setProductInstances(unsortedArray.sort((a,b) =>{a.id > b.id ? 1 :a.id < b.id ? 1 : 0 }))
-    data.setProductInstances([...filteredArray])
+    data.setProductInstances(unsortedArray.sort((a, b) => a.id > b.id ? 1 : a.id < b.id ? -1 : 0))
     res.json(data.productInstances);
 }
 

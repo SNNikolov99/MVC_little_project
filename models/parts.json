@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "description": "SMD 160nm",
+        "supplier": "Melexis",
+        "quantity":"12000"
+    },
+    {
+        "id": 2,
+        "description": "Resistor 8 ohms",
+        "supplier": "Infineon",
+        "quantity":"2000"
+    }
+]
