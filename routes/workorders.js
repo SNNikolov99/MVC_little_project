@@ -9,7 +9,5 @@ router.route('/')
 
 router.route('/:id')
     .get(workorderController.getWorkorder)
-    .put(workorderController.updateWorkorder)
-    .delete(workorderController.deleteWorkorder);
 
 module.exports = router;

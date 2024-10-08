@@ -1,6 +1,6 @@
 {
   "name": "mvc_little_project",
-  "version": "0.0.1",
+  "version": "0.6.4",
   "description": "A simple project which aim to improve the understanding of its author about MVC ",
   "main": "index.js",
   "scripts": {

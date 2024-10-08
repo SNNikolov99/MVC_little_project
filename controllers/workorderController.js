@@ -5,15 +5,16 @@ const data = {
 
 const createNewWorkorder = (req,res) =>{
     const NewWorkorder = {
-         id: data.workorders[data.workorders.length - 1].id + 1 || 1,
+         id: data.workorders[data.workorders.length - 1].id + 1 || 30001,
          customer: req.body.customer,
          deliveryDate: req.body.deliveryDate,
          neededProducts : req.body.neededProducts
     }
 
     
-    data.set([...data.workorders,NewWorkorder]);
+    data.setWorkorders([...data.workorders,NewWorkorder]);
     res.json(data.workorders)
+    res.status(201).json(data.workorders);
 }
 
 const updateWorkorder = (req,res) => {

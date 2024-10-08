@@ -5,7 +5,7 @@ const data = {
 
 const createNewProduct = (req,res) =>{
     const NewProduct = {
-         id: data.products[data.products.length - 1].id + 1 || 1,
+         id: data.products[data.products.length - 1].id + 1 || 10001,
          description: req.body.description,
          neededParts: req.body.neededParts,
     }
@@ -13,6 +13,7 @@ const createNewProduct = (req,res) =>{
    
     data.setProducts([...data.products,NewProduct]);
     res.json(data.products)
+    res.status(201).json(data.products);
 }
 
 const updateProduct = (req,res) => {

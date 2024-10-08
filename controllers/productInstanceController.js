@@ -5,7 +5,7 @@ const data = {
 
 const createNewProductInstance = (req,res) =>{
     const NewProductInstance = {
-         id: data.productInstances[data.productInstances.length - 1].id + 1 || 1,
+         id: data.productInstances[data.productInstances.length - 1].id + 1 || 20001,
          dateOfManufacture: req.body. dateOfManufacture,
          workcluster: req.body.workcluster,
     }
@@ -13,6 +13,7 @@ const createNewProductInstance = (req,res) =>{
    
     data.setProductInstances([...data.productInstances,NewProductInstance]);
     res.json(data.productInstances)
+    res.status(201).json(data.productInstances);
 }
 
 const updateProductInstance = (req,res) => {
@@ -37,9 +38,9 @@ const getProductInstance = (req,res) => {
 }
 
 const deleteProductInstance = (req,res) => {
-    const productInstance = data.productInstances.find(productInstance => productInstance.id === parseInt(req.params.id));
+    const productInstance = data.productInstances.find(productInstance => productInstance.id === parseInt(req.body.id));
     if(!productInstance){
-         return res.status(400).json({"message": `ProductInstance id ${req.params.id} not found`})
+         return res.status(400).json({"message": `ProductInstance id ${req.body.id} not found`})
     }
     const filteredArray = data.productInstances.filter(productInstance =>productInstance.id !== parseInt(req.body.id));
     data.setProductInstances([...filteredArray])
