@@ -1,0 +1,80 @@
+The aim of this repository is to provide a solution to a university exersise, regarding MVC-model.
+
+1.Entities
+    The solution has four entities:
+
+    
+    part {
+            "id": int
+            "description": string,
+            "supplier": string,
+            "quantity": int
+    }
+    part IDs start from 1 to 10000
+
+    product 
+    {
+            "id": int,
+            "description": string ,
+            "neededParts": array<string,int> 
+    }
+    product IDs start from 10001 to 20000
+
+    productInstance {
+            "id": int,
+            "dateOfManufacture": string,
+            "workcluster":atring 
+    }
+    productInstance IDs start from 20001 to 30000
+
+    workorders{
+            "id": int,
+            "customer": string 
+            "deliveryDate": string
+            "neededProducts": array<string,int> 
+        }
+    workorder IDs start from 30001 to 40000
+
+    The models for each entity are contained in models folder. The models are JSON files and contain JSON objects. 
+    The controllers for each entity are located in the controllers folder and they can access the models. 
+    In the routes folder are located the routes for each entity and how they react with the server. 
+
+
+2.Needed plugins
+
+    2.A-NPM
+        To install NPM read this link -> https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+    2.B-Express
+        To install Express run "npm install express --save"
+    2.C-Nodemon 
+        Bear in mind the Nodemon extension has to be installed. To do that run in the console the "npm install -g nodemon"
+        command
+
+3.Execution
+    To activate the server, open the terminal and run "npm run dev". The server runs on port 3501. 
+    Then, the user can use postman or thunder client to make requests.
+    
+    Those are the links on which CRUD operations can be performed
+    http://localhost:3501/parts
+    http://localhost:3501/products 
+    http://localhost:3501/partsInstances 
+    http://localhost:3501/workorders
+
+    The requests work the same on the different entities. I will use parts as example
+
+    For the method GET -> works with IDs. To get an object, for example the first one, configure Postman or
+    Thunder Client on GET and put this adress:  http://localhost:3501/parts/1. You will get the object, or a server error
+
+    If you put the address http://localhost:3501/parts ,you get the whole JSON file 
+
+    For the method POST ->  To post an object, configure Postman or
+    Thunder Client on POST and put this adress:  http://localhost:3501/parts. You will poset the object, or get a server error
+
+    For the method DELETE ->  To delete an object, for example the first one, configure Postman or
+    Thunder Client on DELETE and put this adress:  http://localhost:3501/parts. Then write in the body which id needs to be deleted and execute.
+    You will get server success, or a server error
+
+    For the method PUT ->  To update an object, for example the first one, configure Postman or
+    Thunder Client on PUT and put this adress:  http://localhost:3501/parts.
+    Then write in the body the id and other values. It will change the values of the object with the body id, with those in the body.
+    You will get the object, or a server error
