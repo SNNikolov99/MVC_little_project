@@ -5,12 +5,21 @@ const data = {
 
 const createNewWorkorder = (req,res) =>{
     const NewWorkorder = {
-         id: data.workorders[data.workorders.length - 1].id + 1 || 30001,
+         id: data.parts?.length ? data.parts[data.parts.length - 1].id + 1 : 30001,
          customer: req.body.customer,
          deliveryDate: req.body.deliveryDate,
          neededProducts : req.body.neededProducts
     }
 
+    if (!NewWorkorder.customer) {
+        return res.status(400).json({ 'message': 'No customer given.' });
+    }
+    else if(!NewWorkorder.deliveryDate){
+        return res.status(400).json({ 'message': 'No delivery date given.' });
+    }
+    else if((!NewWorkorder.neededProducts)){
+        return res.status(400).json({ 'message': 'No array of needed products is given.' });
+    }
     
     data.setWorkorders([...data.workorders,NewWorkorder]);
     res.json(data.workorders)
@@ -28,6 +37,11 @@ const updateWorkorder = (req,res) => {
     const filteredArray = data.workorders.filter(workorder =>workorder.id !== parseInt(req.body.id));
     const unsortedArray = [...filteredArray,workorder];
     data.setWorkorders(unsortedArray.sort((a, b) => a.id > b.id ? 1 : a.id < b.id ? -1 : 0))
+    res.json(data.workorders);
+}
+
+
+const getAllWorkorders = (req, res) => {
     res.json(data.workorders);
 }
 
@@ -54,6 +68,7 @@ module.exports = {
     createNewWorkorder,
     updateWorkorder,
     getWorkorder,
-    deleteWorkorder
+    deleteWorkorder,
+    getAllWorkorders
 
 }

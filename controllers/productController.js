@@ -5,12 +5,18 @@ const data = {
 
 const createNewProduct = (req,res) =>{
     const NewProduct = {
-         id: data.products[data.products.length - 1].id + 1 || 10001,
+         id: data.parts?.length ? data.parts[data.parts.length - 1].id + 1 : 10001,
          description: req.body.description,
          neededParts: req.body.neededParts,
     }
 
-   
+    if (!NewProduct.description) {
+        return res.status(400).json({ 'message': 'No description given.' });
+    }
+    else if(!NewProduct.neededParts){
+        return res.status(400).json({ 'message': 'No array of needed parts is given.' });
+    }
+    
     data.setProducts([...data.products,NewProduct]);
     res.json(data.products)
     res.status(201).json(data.products);
@@ -26,6 +32,10 @@ const updateProduct = (req,res) => {
     const filteredArray = data.products.filter(product =>product.id !== parseInt(req.body.id));
     const unsortedArray = [...filteredArray,product];
     data.setProducts(unsortedArray.sort((a, b) => a.id > b.id ? 1 : a.id < b.id ? -1 : 0))
+    res.json(data.products);
+}
+
+const getAllProducts = (req, res) => {
     res.json(data.products);
 }
 
@@ -52,6 +62,7 @@ module.exports = {
     createNewProduct,
     updateProduct,
     getProduct,
-    deleteProduct
+    deleteProduct,
+    getAllProducts
 
 }

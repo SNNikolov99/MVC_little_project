@@ -5,6 +5,7 @@ const workorderController = require('../controllers/workorderController');
 router.route('/')
     .post(workorderController.createNewWorkorder)
     .put(workorderController.updateWorkorder)
+    .get(workorderController.getAllWorkorders)
     .delete(workorderController.deleteWorkorder);
 
 router.route('/:id')

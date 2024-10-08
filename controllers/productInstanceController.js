@@ -5,12 +5,20 @@ const data = {
 
 const createNewProductInstance = (req,res) =>{
     const NewProductInstance = {
-         id: data.productInstances[data.productInstances.length - 1].id + 1 || 20001,
+         id: data.parts?.length ? data.parts[data.parts.length - 1].id + 1 : 20001,
          dateOfManufacture: req.body. dateOfManufacture,
          workcluster: req.body.workcluster,
     }
 
    
+    if (!NewProductInstance.dateOfManufacture) {
+        return res.status(400).json({ 'message': 'No date of manufacture given.' });
+    }
+    else if(!NewProductInstance.workcluster){
+        return res.status(400).json({ 'message': 'No workcluster given.' });
+    }
+    
+
     data.setProductInstances([...data.productInstances,NewProductInstance]);
     res.json(data.productInstances)
     res.status(201).json(data.productInstances);
@@ -26,6 +34,11 @@ const updateProductInstance = (req,res) => {
     const filteredArray = data.productInstances.filter(productInstance =>productInstance.id !== parseInt(req.body.id));
     const unsortedArray = [...filteredArray,productInstance];
     data.setProductInstances(unsortedArray.sort((a, b) => a.id > b.id ? 1 : a.id < b.id ? -1 : 0))
+    res.json(data.productInstances);
+}
+
+
+const getAllPIs = (req, res) => {
     res.json(data.productInstances);
 }
 
@@ -52,6 +65,7 @@ module.exports = {
     createNewProductInstance,
     updateProductInstance,
     getProductInstance,
-    deleteProductInstance
+    deleteProductInstance,
+    getAllPIs
 
 }
